@@ -35,8 +35,7 @@ public class Cartao {
     public Cartao() {
     }
 
-    public Cartao(Long id, String nome, CartaoTipo tipo, float anuidade, String bandeira) {
-        this.id = id;
+    public Cartao(String nome, CartaoTipo tipo, float anuidade, String bandeira) {
         this.nome = nome;
         this.tipo = tipo;
         this.anuidade = anuidade;
