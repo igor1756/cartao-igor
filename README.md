@@ -25,38 +25,52 @@ Este projeto é uma API para gerenciamento de clientes e cartões de crédito, p
 
 ## 🔧 Funcionalidades
 
-- ✅ Cadastro de clientes
-- ✅ Consulta de clientes por ID
-- ✅ Busca por CPF
-- ✅ Busca por email
+- ✅ Cadastrar clientes
+- ✅ Consultar cliente por ID
+- ✅ Consultar cliente por CPF
+- ✅ Consultar cliente por email
 - ✅ Listagem de todos os clientes
-- ✅ Atualização de dados do cliente
 - ✅ Exclusão de clientes
-- ✅ Validação de dados
+- 💳 Cadastrar cartão de crédito
+- 💳 Consultar cartão de crédito por ID
+- 💳 Listagem de todos os cartões de crédito
+- 💳 Exclusão de cartões de crédito
+- 📄 Firmar contrato
+- 📄 Consultar contrato por ID
+- 📄 Listagem de todos os contratos
+- 📄 Consultar contrato por ID do cliente
+- 📄 Encerrar contrato
+- 📄 Exclusão de contrato
 
-## 📊 Modelo de Dados
+
+## 📊 Modelo de Dados (atributos)
 
 ### Cliente
-- `id` (Long) - Identificador único
 - `nome` (String) - Nome do cliente
 - `cpf` (String) - CPF do cliente (único)
 - `email` (String) - Email do cliente (único)
 - `dataNascimento` (LocalDate) - Data de nascimento do cliente
 
 ### Cartão de Crédito
-- `id` (Long) - Identificador único
-- `nome` (String) - Nome??
+- `nome` (String) - Nome conforme escrito no cartão
 - `tipo` (String) - Crédito ou débito
 - `anuidade` (float) - Valor da anuidade do cartão
 - `bandeira` (String) - Elo, Visa, Mastercard, etc.
 
 ### Contrato
-- `id` (Long) - Identificador único
 - `Status` (String) - Ativo ou cancelado
 - `dataInicio` (LocalDate) - Data de início do contrato
 - `dataFim` (LocalDate) - Data de fim do contrato
 - `cliente` (Cliente) - Cliente associado ao contrato
 - `cartaoCredito` (Cartão de Crédito) - Cartão de crédito associado ao contrato
+
+
+## 🔗 Relacionamentos
+
+- Um cliente firma no mínimo nenhum e no máximo muitos contratos.
+- Um contrato é firmado por no mínimo um e no máximo um cliente.
+- Um contrato está relacionado a no mínimo um e no máximo um cartão.
+- Um cartão possui no mínimo nenhum e no máximo muitos contratos.
 
 
 ## 🛠️ Instalação e Configuração
@@ -87,14 +101,18 @@ Para produção, edite o arquivo `src/main/resources/application.properties`, al
 mvn spring-boot:run
 ```
 
-4. **Acesse a aplicação**
-- URL: `http://localhost:8080/swagger-ui.html`
+4. **Acesse a base de dados da aplicação**
+
 - Console H2 (se habilitado): `http://localhost:8080/h2-console`
 
 <img width="467" height="378" alt="image" src="https://github.com/user-attachments/assets/6f070315-bb6c-4594-8c61-f7f360f2f26d" />
 
 Confira o nome da base de dados e clique em "Connect".
 Obs: Não é necessário preencher senha e o usuário é "sa".
+
+5. **Acesse a documentação da API**
+
+- URL: `http://localhost:8080/swagger-ui.html`
 
 
 
@@ -109,10 +127,30 @@ Obs: Não é necessário preencher senha e o usuário é "sa".
 | GET | `/api/clientes/cpf/{cpf}` | Busca cliente por CPF |
 | GET | `/api/clientes/email/{email}` | Busca cliente por email |
 | POST | `/api/clientes` | Cadastra novo cliente |
-| PUT | `/api/clientes/{id}` | Atualiza cliente existente |
 | DELETE | `/api/clientes/{id}` | Remove cliente |
 
-### Exemplo de uso
+### Cartões
+
+| Método | Endpoint | Descrição |
+|--------|----------|-----------|
+| GET | `/api/cartoes` | Lista todos os cartões |
+| GET | `/api/cartoes/{id}` | Busca cartão por ID |
+| POST | `/api/cartoes` | Cadastra novo cartão |
+| DELETE | `/api/cartoes/{id}` | Remove cartão |
+
+### Contratos
+
+| Método | Endpoint | Descrição |
+|--------|----------|-----------|
+| GET | `/api/contratos` | Lista todos os contratos |
+| GET | `/api/contratos/{id}` | Busca contrato por ID |
+| GET | `/api/contratos/cliente/{clienteId}` | Busca contrato por ID do cliente |
+| POST | `/api/contratos` | Firma novo contrato |
+| PUT | `/api/contratos/{id}/encerrar` | Encerra contrato |
+| DELETE | `/api/contratos/{id}` | Remove contrato |
+
+
+### Exemplo de uso via terminal
 
 **Cadastrar cliente:**
 ```bash
@@ -133,19 +171,13 @@ curl -X 'POST' \
 curl http://localhost:8080/api/clientes/cpf/12345678901
 ```
 
-## 🧪 Testes
+**O uso das demais funcionalidades podem ser consultadas e executadas diretamente na documentação da API no Swagger.**
 
-Execute os testes unitários:
-```bash
-mvn test
+```
+http://localhost:8080/swagger-ui.html
 ```
 
-Execute os testes de integração:
-```bash
-mvn verify
-```
-
-## 📝 Validações
+## 📝 Validações de criação
 
 Cliente:
 - CPF deve ser único e válido
@@ -154,6 +186,13 @@ Cliente:
 - Data de nascimento deve seguir o padrão YYYY-MM-DD
 
 Cartão:
+- Nome do cartão é obrigatório e tem tamanho máximo de 100 caracteres;
+- Tipo do cartão deve ser 'Debito' ou 'Credito';
+- Anuidade é um valor decimal, obrigatório e deve ser maior que zero;
+- Bandeira é obrigatória e tem tamanho máximo de 50 caracteres.
+
+Contrato:
+- O id do cliente e do cartão são obrigatórios.
 
 
 ## 🤝 Contribuição

@@ -50,6 +50,18 @@ public class ContratoService {
         return contratoRepository.findAll();
     }
 
+    // buscar contratos pelo id do cliente
+    @Transactional
+    public Contrato listarContratosPorClienteId(Long clienteId) {
+        return contratoRepository.findByClienteId(clienteId);
+    }
+
+    // buscar contrato pelo id
+    @Transactional
+    public Contrato listarContratoPorId(Long id) {
+        return contratoRepository.findById(id).orElse(null);
+    }
+
     // remover contrato
     @Transactional
     public void removerContrato(Long id) {

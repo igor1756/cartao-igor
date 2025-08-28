@@ -60,6 +60,54 @@ public class ClienteController {
         }
     }
 
+    // buscar cliente pelo nome
+    @GetMapping("/nome/{nome}")
+    @Operation(summary = "Listar um cliente pelo nome")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Cliente encontrado"),
+        @ApiResponse(responseCode = "404", description = "Cliente não encontrado")
+    })
+    public ResponseEntity<Cliente> listarClientePorNome(@PathVariable String nome) {
+        Cliente cliente = clienteService.listarClientePorNome(nome);
+        if (cliente != null) {
+            return new ResponseEntity<>(cliente, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    // buscar cliente pelo cpf
+    @GetMapping("/cpf/{cpf}")
+    @Operation(summary = "Listar um cliente pelo CPF")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Cliente encontrado"),
+        @ApiResponse(responseCode = "404", description = "Cliente não encontrado")
+    })
+    public ResponseEntity<Cliente> listarClientePorCpf(@PathVariable String cpf) {
+        Cliente cliente = clienteService.listarClientePorCpf(cpf);
+        if (cliente != null) {
+            return new ResponseEntity<>(cliente, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    // buscar cliente pelo email
+    @GetMapping("/email/{email}")
+    @Operation(summary = "Listar um cliente pelo email")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Cliente encontrado."),
+        @ApiResponse(responseCode = "404", description = "Cliente não encontrado.")
+    })
+    public ResponseEntity<Cliente> listarClientePorEmail(@PathVariable String email) {
+        Cliente cliente = clienteService.listarClientePorEmail(email);
+        if (cliente != null) {
+            return new ResponseEntity<>(cliente, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
     // cadastrar cliente
     @PostMapping
     @Operation(summary = "Cadastrar um novo cliente")

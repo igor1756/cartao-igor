@@ -52,11 +52,35 @@ public class ContratoController {
         }
     }
 
-    // listar contrastos
+    // listar contratos
     @GetMapping
     @Operation(summary = "Listar todos os contratos")
     public Iterable<Contrato> listarContratos() {
         return contratoService.listarContratos();
+    }
+
+    // buscar contrato pelo id
+    @GetMapping("/{id}")
+    @Operation(summary = "Listar um contrato pelo ID")
+    public ResponseEntity<Contrato> listarContratoPorId(@PathVariable Long id) {
+        Contrato contrato = contratoService.listarContratoPorId(id);
+        if (contrato != null) {
+            return new ResponseEntity<>(contrato, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    // buscar contratos pelo id do cliente
+    @GetMapping("/cliente/{clienteId}")
+    @Operation(summary = "Listar contratos pelo ID do cliente")
+    public ResponseEntity<Contrato> listarContratosPorClienteId(@PathVariable Long clienteId) {
+        Contrato contrato = contratoService.listarContratosPorClienteId(clienteId);
+        if (contrato != null) {
+            return new ResponseEntity<>(contrato, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     // remover contrato

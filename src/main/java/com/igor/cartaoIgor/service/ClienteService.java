@@ -45,6 +45,24 @@ public class ClienteService {
         return clienteRepository.findById(id).orElse(null);
     }
 
+    // buscar cliente pelo nome
+    @Transactional
+    public Cliente listarClientePorNome(String nome) {
+        return clienteRepository.findByNome(nome).orElse(null);
+    }
+
+    // buscar cliente pelo cpf
+    @Transactional
+    public Cliente listarClientePorCpf(String cpf) {
+        return clienteRepository.findByCpf(cpf).orElse(null);
+    }
+
+    // buscar cliente pelo email
+    @Transactional
+    public Cliente listarClientePorEmail(String email) {
+        return clienteRepository.findByEmail(email).orElse(null);
+    }
+
     // atualizar cliente
     @Transactional
     public Cliente atualizarCliente(Long id, Cliente clienteInformado) {

@@ -13,6 +13,7 @@ public interface ContratoRepository extends JpaRepository<Contrato, Long> {
     // findAll() - para buscar todos os objetos
     // deleteById(Long id) - para deletar pelo ID
 
-
+    // buscar contrato por id do cliente
+    Contrato findByClienteId(Long clienteId);
 
 }

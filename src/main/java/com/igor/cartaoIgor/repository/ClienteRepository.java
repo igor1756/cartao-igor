@@ -16,6 +16,7 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long>{
         // findAll() - para buscar todos os objetos
         // deleteById(Long id) - para deletar pelo ID
     
+    Optional<Cliente> findByNome(String nome);
     Optional<Cliente> findByCpf(String cpf);
     Optional<Cliente> findByEmail(String email);
 }
