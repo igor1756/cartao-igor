@@ -79,6 +79,7 @@ Este projeto é uma API para gerenciamento de clientes e cartões de crédito, p
 - Java 21
 - Maven 3.6+
 - Banco de dados: H2 (desenvolvimento) e PostgreSQL (produção)
+- Git instalado e configurado
 
 ### Passos para execução
 
@@ -87,6 +88,7 @@ Este projeto é uma API para gerenciamento de clientes e cartões de crédito, p
 git clone <url-do-repositorio>
 cd cartaoIgor
 ```
+OBS: A url dependerá do tipo de conexão do seu ambiente local (SSH ou HTTPS).
 
 2. **Configure o banco de dados**
 
