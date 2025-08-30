@@ -96,6 +96,8 @@ O projeto utiliza perfis do Spring Boot para gerenciar configurações específi
 
 Para desenvolvimento, o projeto já vem configurado para utilizar o H2, sem a necessidade de configuração adicional.
 
+`Atenção! Os dados inseridos em ambiente de desenvolvimento são descartados assim que a aplicação é encerrada e servem apenas para desenvolvimento e testes. Para persistência perene, deve-se configurar o ambiente de produção, cuja configuração é sugerida em sessão própria nesta documentação.`
+
 Para produção, edite o arquivo `src/main/resources/application.properties`, alterando o 'spring.profiles.active=dev' para 'spring.profiles.active=prod' e adicione as configurações do banco de dados desejado.
 
 3. **Execute a aplicação**
