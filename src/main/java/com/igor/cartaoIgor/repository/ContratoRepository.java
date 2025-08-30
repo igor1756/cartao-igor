@@ -1,5 +1,7 @@
 package com.igor.cartaoIgor.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -14,6 +16,6 @@ public interface ContratoRepository extends JpaRepository<Contrato, Long> {
     // deleteById(Long id) - para deletar pelo ID
 
     // buscar contrato por id do cliente
-    Contrato findByClienteId(Long clienteId);
+    List<Contrato> findByClienteId(Long clienteId);
 
 }

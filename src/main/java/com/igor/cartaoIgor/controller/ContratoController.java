@@ -1,6 +1,8 @@
 package com.igor.cartaoIgor.controller;
 
     
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -74,13 +76,19 @@ public class ContratoController {
     // buscar contratos pelo id do cliente
     @GetMapping("/cliente/{clienteId}")
     @Operation(summary = "Listar contratos pelo ID do cliente")
-    public ResponseEntity<Contrato> listarContratosPorClienteId(@PathVariable Long clienteId) {
-        Contrato contrato = contratoService.listarContratosPorClienteId(clienteId);
-        if (contrato != null) {
-            return new ResponseEntity<>(contrato, HttpStatus.OK);
+    public ResponseEntity<List<Contrato>> listarContratosPorClienteId(@PathVariable Long clienteId) {
+        List<Contrato> listaContratos = contratoService.listarContratosPorClienteId(clienteId);
+        if (listaContratos.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(listaContratos, HttpStatus.OK);
         }
+
+        // if (contrato != null) {
+        //     return new ResponseEntity<>(contrato, HttpStatus.OK);
+        // } else {
+        //     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        // }
     }
 
     // remover contrato

@@ -1,6 +1,7 @@
 package com.igor.cartaoIgor.service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -52,7 +53,7 @@ public class ContratoService {
 
     // buscar contratos pelo id do cliente
     @Transactional
-    public Contrato listarContratosPorClienteId(Long clienteId) {
+    public List<Contrato> listarContratosPorClienteId(Long clienteId) {
         return contratoRepository.findByClienteId(clienteId);
     }
 
