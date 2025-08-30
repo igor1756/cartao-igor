@@ -17,11 +17,6 @@ Este projeto é uma API para gerenciamento de clientes e cartões de crédito, p
 - **H2** - Banco de dados de desenvolvimento
 - **Swagger** - Documentação da API
 
-## 📁 Estrutura do Projeto
-
-```
-
-```
 
 ## 🔧 Funcionalidades
 
