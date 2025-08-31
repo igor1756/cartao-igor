@@ -31,3 +31,51 @@ build/
 
 ### VS Code ###
 .vscode/
+
+
+Ignorar arquivos gerados pelo build, como classes compiladas e artefatos.
+/target/
+/build/
+
+Ignorar logs e arquivos de teste
+*.log
+*.bak
+/logs/
+
+Ignorar dependências do projeto
+/lib/
+/node_modules/
+
+Ignorar configurações de IDEs
+.idea/
+.vscode/
+*.iml
+*.iws
+*.ipr
+.project
+.classpath
+
+Ignorar configurações do Spring Boot
+target/
+!/src/main//target/
+!/src/test//target/
+
+Ignorar arquivos de cache
+.gradle/
+.settings/
+.springBeans
+.springBoots
+.sts4/
+.settings/
+
+Ignorar dados sensíveis
+/src/main/resources/application.properties
+/src/main/resources/application-dev.properties
+/src/main/resources/application-prod.properties
+/src/main/resources/application.yml
+!/src/main/resources/application-example.properties
+!/src/main/resources/application-example.yml
+
+Ignorar arquivos do sistema operacional
+.DS_Store
+Thumbs.db
